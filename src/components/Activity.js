@@ -10,7 +10,6 @@ import hash from "object-hash";
 import { DatetimePicker } from "rc-datetime-picker";
 import Button from "./Button";
 import CategoryPicker from "./CategoryPicker";
-import Color from "color";
 import ActivityContext from "../contexts/ActivityContext";
 
 const EDIT_MODES = {
@@ -33,13 +32,7 @@ const StyledContainer = themed(
     `
         : `cursor: pointer;`}
     :hover {
-      background-color: ${props => {
-        if (props.active) return Color(props.theme.background).string();
-        return Color(props.theme.background)
-          .negate()
-          .alpha(0.1)
-          .string();
-      }};
+      border-color: ${props => (props.active ? "orange" : "burlywood")};
     }
   `
 );

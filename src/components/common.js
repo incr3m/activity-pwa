@@ -20,6 +20,6 @@ export const containerStyle = props =>
   css`
     padding: 15px;
     max-width: 600px;
-    border: solid 1px dimgray;
+    border: solid 2px dimgray;
     margin: 30px auto;
   `;

@@ -3,11 +3,13 @@ import ThemeContext from "../contexts/ThemeContext";
 import Switch from "react-switch";
 
 export default function ThemeSwitcher() {
-  const [nightModeEnabled, setNightMode] = React.useState(false);
-  const { setTheme, themes } = React.useContext(ThemeContext);
+  const { setTheme, key } = React.useContext(ThemeContext);
+  console.log("theme", key); //TRACE
+  const [nightModeEnabled, setNightMode] = React.useState(key === "dark");
   React.useEffect(
     () => {
-      setTheme(nightModeEnabled ? themes.dark : themes.light);
+      console.log("changing", nightModeEnabled);
+      setTheme(nightModeEnabled ? "dark" : "light");
     },
     [nightModeEnabled]
   );

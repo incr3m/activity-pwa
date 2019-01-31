@@ -16,9 +16,13 @@ const themes = {
 const ThemeContext = React.createContext();
 
 export function Provider(props) {
-  const [theme, setTheme] = React.useState(themes.light);
+  const [key, setTheme] = React.useState(
+    localStorage.getItem("theme") || "light"
+  );
+  const currentTheme = themes[key];
   const value = {
-    theme,
+    key,
+    theme: currentTheme,
     setTheme,
     themes
   };
@@ -26,12 +30,13 @@ export function Provider(props) {
   React.useEffect(
     () => {
       //get denser color
-      const newBodyBg = Color(theme.background)
+      const newBodyBg = Color(currentTheme.background)
         .alpha(0.9)
         .string();
       setBodyBg(newBodyBg);
+      localStorage.setItem("theme", key);
     },
-    [theme]
+    [key]
   );
   document.body.style.backgroundColor = bodyBg;
   return (
