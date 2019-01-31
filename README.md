@@ -5,6 +5,8 @@
   <br/>
 </p>
 
+## Go to [SITE](https://incr3m.github.io/react-activity-pwa)
+
 ## Mainly uses
 
 * [create-react-app](https://github.com/facebook/create-react-app)
