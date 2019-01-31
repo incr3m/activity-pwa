@@ -19,6 +19,7 @@ export default function ThemeSwitcher() {
         <img
           height="15"
           width="15"
+          alt="night"
           style={{ margin: 6 }}
           src="https://svgshare.com/i/Au6.svg"
           title="night"
@@ -28,9 +29,10 @@ export default function ThemeSwitcher() {
         <img
           height="20"
           width="20"
+          alt="day"
           style={{ margin: 4 }}
           src="https://svgshare.com/i/Atp.svg"
-          title="night"
+          title="day"
         />
       }
       className="react-switch"

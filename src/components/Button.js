@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { basicStyle, themed } from "./common";
-import { Map } from "immutable";
 import Color from "color";
 
 const Btn = themed(styled.button`
   ${basicStyle};
   ${props => (props.color ? `color: ${props.color};` : "")}
-  border: solid 2px gray;
+  border: ${props => (props.readOnly ? "none" : "solid 2px gray")};
   padding: ${props => (props.small ? "5px 15px" : "10px 25px")};
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: ${props => (props.small ? "12px" : "16px")};
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
   ${props =>
     props.disabled
       ? `
@@ -23,6 +22,8 @@ const Btn = themed(styled.button`
       : ""}
   :hover {
     background-color: ${props => {
+      if (props.disabled || props.readOnly)
+        return Color(props.theme.background).string();
       return Color(props.theme.background)
         .negate()
         .alpha(0.2)
@@ -31,6 +32,7 @@ const Btn = themed(styled.button`
   }
   :active {
     background-color: ${props => {
+      if (props.readOnly) return Color(props.theme.background).string();
       return Color(props.theme.background)
         .negate()
         .alpha(0.3)
@@ -46,9 +48,9 @@ export default function(props) {
   return (
     <Btn
       {...props}
-      onClick={() => {
-        if (props.disabled) return;
-        props.onClick && props.onClick();
+      onClick={e => {
+        if (props.disabled || props.readOnly) return;
+        props.onClick && props.onClick(e);
       }}
     />
   );
