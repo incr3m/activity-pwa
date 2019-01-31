@@ -1,5 +1,6 @@
 import React from "react";
 import { Provider as ThemeContextProvider } from "./contexts/ThemeContext";
+import { Provider as ActContextProvider } from "./contexts/ActivityContext";
 
 import ThemedButton from "./components/Button";
 import MainContainer from "./components/MainContainer";
@@ -18,21 +19,25 @@ const Divider = styled.div`
 export default props => {
   return (
     <ThemeContextProvider>
-      <MainContainer>
-        <div>
+      <ActContextProvider>
+        <MainContainer>
+          <div>
+            <FloatRight>
+              <ThemeSwitcher />
+            </FloatRight>
+            <h1>My Activities</h1>
+          </div>
+          some things
           <FloatRight>
-            <ThemeSwitcher />
+            <ThemedButton onClick={() => alert("hi")}>
+              New Activity
+            </ThemedButton>
+            <ThemedButton>Clear All</ThemedButton>
           </FloatRight>
-          <h1>My Activities</h1>
-        </div>
-        some things
-        <FloatRight>
-          <ThemedButton>New Activity</ThemedButton>
-          <ThemedButton>Clear All</ThemedButton>
-        </FloatRight>
-        <Divider />
-      </MainContainer>
-      <Activity />
+          <Divider />
+        </MainContainer>
+        <Activity />
+      </ActContextProvider>
     </ThemeContextProvider>
   );
 };

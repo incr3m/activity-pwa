@@ -1,4 +1,13 @@
+import React from 'react';
 import { css } from "@emotion/core";
+import ThemeContext from "../contexts/ThemeContext";
+
+export function themed(Component) {
+  return props => {
+    const { theme } = React.useContext(ThemeContext);
+    return <Component {...props} theme={theme} />;
+  };
+}
 
 export const basicStyle = props =>
   css`
